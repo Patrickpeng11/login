@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="google-signin-client_id" content="581712155038-6fjd2g6m5ii9huint8vl7m3osq3nelb2.apps.googleusercontent.com">
+    <title>CAS Test</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+   
+ </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <h3 id="user-data" class="logged-out">Hello there <span id="username">Your Name Here</span></h3>
+    <h6 id="log-out">Log Out Of This App</h6>
+  </body>
+  <script type="text/javascript">
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      document.getElementById("username").innerHTML = profile.getName() + 
+        "<hr><img src=\""+profile.getImageUrl()+"\"/>";
+      document.querySelector("#user-data").classList.remove("logged-out");
+      console.log('Email: ' + profile.getEmail());
+    }
+  
+    document.getElementById("log-out").addEventListener("click", signOut);
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+        document.querySelector("#user-data").classList.add("logged-out");
+      });
+    }
+  </script>
+  <style>
+    .logged-out {
+      display: none;
+    }
+  </style>
+</html>

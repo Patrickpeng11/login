@@ -1,0 +1,56 @@
+<html>
+     <form action="register.php" method="post">
+      <input type="text" name="username" id="username" placeholder="username, e.g. admin"></input>
+      <br>
+      <input type="password" name="password" id="password" placeholder="password" ></input>
+      <br>
+      <input type="password" name="confirm password" id="confirmpassword" placeholder="confirm password"></input>
+      <br>
+<span id="confirmMessage" class="confirmMessage"></span>
+<span id="abc"></span>
+<br>
+     
+      <button type="submit" id="buon1" disabled=true>register</button>
+      
+      
+      
+      
+    </form>
+    <form action="index.html">
+        <input type="submit" value="go back to index"/>
+        
+    </form>
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script>
+    $(document).ready(function abc(){
+      $("#confirmpassword,#password").keyup(function (){
+          if($("#confirmpassword").val() == $("#password").val()){
+              $("#confirmMessage").html('matching').css('color', 'green');
+               $("#confirmpassword").css("background", "white");
+               $("#buon1").prop("disabled", false);
+        return true;
+          }
+          else{
+              $("#confirmMessage").html('not matching').css('color', 'green');
+              $("#confirmpassword").css("background", "red");
+              $("#buon1").prop("disabled", true);
+        return false;
+          }
+      });
+      $("input").keydown(function() {
+          var pass1=$("#username").val();
+          var pass2=$("#password").val();
+          if(pass1.length>=3 || pass2.length>=3){
+               $("#abc").html("");
+              abc();
+             
+          }
+          else{
+              $("#abc").html("At least 3 words");
+              $("#buon1").prop("disabled", true);
+          }
+      });
+    });
+    
+</script>
+</html>
